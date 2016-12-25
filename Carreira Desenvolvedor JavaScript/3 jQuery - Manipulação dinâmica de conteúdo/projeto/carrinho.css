@@ -23,6 +23,7 @@ table {
 	background: #f5f5f5;
 	border: 1.5em solid #f5f5f5;
 	width: 100%;
+	table-layout: fixed;
 }
 thead {
 	font-weight: bold;
@@ -37,6 +38,9 @@ td {
 	border-bottom: 1px solid #ddd;
 }
 
+.hovering {
+	background: #ccc;
+}
 
 .propaganda td {
 	background: #9F0;
@@ -55,7 +59,7 @@ td {
 	text-decoration: none;
 	text-transform: uppercase;
 	
-	display: inline-block;
+	display: none;
 	padding: 0.5em;
 }
 
@@ -84,5 +88,9 @@ input[type=button] {
 	padding: 1.5em;
 	line-height: 2;
 	margin: 2em 0;
+}
+
+#mostra-propagandas{
+	display: none;	
 }
 
