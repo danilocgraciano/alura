@@ -18,27 +18,11 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><img src="imagens/tablet.jpg"></td>
-					<td>Tablet miPad 18</td>
-					<td>1</td>
-					<td>499.99</td>
-					<td class="item-total">499.99</td>
-					<td><a class="remove-item" href="">(REMOVER)</a></td>
-				</tr>
-				<tr>
 					<td><img src="imagens/telefone.png"></td>
 					<td>Telefone miPhone 18</td>
 					<td>2</td>
 					<td>199.99</td>
 					<td class="item-total">399.98</td>
-					<td><a class="remove-item" href="">(REMOVER)</a></td>
-				</tr>
-				<tr>
-					<td><img src="imagens/sapato.jpg"></td>
-					<td>Sapato</td>
-					<td>1</td>
-					<td>99.99</td>
-					<td class="item-total">99.99</td>
 					<td><a class="remove-item" href="">(REMOVER)</a></td>
 				</tr>
 				<tr>
@@ -65,6 +49,43 @@
 					<td class="item-total">199.00</td>
 					<td><a class="remove-item" href="">(REMOVER)</a></td>
 				</tr>
+			</tbody>
+		</table>
+
+		<div>
+			<input type="button" value="UNDO" class="undo"/>
+		</div>
+
+		<div>
+			Valor Total: R$<span class="valor-total">0</span>
+			<br/>
+			Quantidade de Itens: <span class="quantidade-de-itens">0</span>
+		</div>
+		
+	</div>
+
+	<div class="carrinho">
+		<h2>Carrinho entrega no Paraná</h2>
+		<table>
+			<thead>
+				<tr>
+					<td></td>
+					<td>Nome</td>
+					<td>Quantidade</td>
+					<td>Valor</td>
+					<td>Total</td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><img src="imagens/tablet.jpg"></td>
+					<td>Tablet miPad 18</td>
+					<td>1</td>
+					<td>499.99</td>
+					<td class="item-total">499.99</td>
+					<td><a class="remove-item" href="">(REMOVER)</a></td>
+				</tr>
 				<tr>
 					<td><img src="imagens/camiseta.jpg"></td>
 					<td>Camiseta G</td>
@@ -75,18 +96,56 @@
 				</tr>
 			</tbody>
 		</table>
-	
+
+		<div>
+			<input type="button" value="UNDO" class="undo"/>
+		</div>
+
+		<div>
+			Valor Total: R$<span class="valor-total">0</span>
+			<br/>
+			Quantidade de Itens: <span class="quantidade-de-itens">0</span>
+		</div>
+		
 	</div>
 
-	<div>
-		<input type="button" value="UNDO" id="btnUndo"/>
+	<div class="carrinho">
+		<h2>Carrinho entrega no Rio de Janeiro</h2>
+		<table>
+			<thead>
+				<tr>
+					<td></td>
+					<td>Nome</td>
+					<td>Quantidade</td>
+					<td>Valor</td>
+					<td>Total</td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><img src="imagens/sapato.jpg"></td>
+					<td>Sapato</td>
+					<td>1</td>
+					<td>99.99</td>
+					<td class="item-total">99.99</td>
+					<td><a class="remove-item" href="">(REMOVER)</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div>
+			<input type="button" value="UNDO" class="undo"/>
+		</div>
+
+		<div>
+			Valor Total: R$<span class="valor-total">0</span>
+			<br/>
+			Quantidade de Itens: <span class="quantidade-de-itens">0</span>
+		</div>
+		
 	</div>
 
-	<div>
-		Valor Total: R$<span id="valor-total">0</span>
-		<br/>
-		Quantidade de Itens: <span id="quantidade-de-itens">0</span>
-	</div>
 
 	<script src="jquery-3.1.1.min.js"></script>
 	<script src="carrinho.js"></script>

@@ -1,19 +1,24 @@
 var refreshTotais = function(){
 
-	var items = $(".item-total:visible");
-	var total = 0;
-	for (var i = 0; i < items.length; i++) {
-		var preco = parseFloat($(items[i]).text());
-		total += preco;
-	};
-	$("#valor-total").text(total);
-	$("#quantidade-de-itens").text(items.length);
+	$(".carrinho").each(function(){
+		
+		var items = $(this).find(".item-total:visible");
+		var total = 0;
+
+		for (var i = 0; i < items.length; i++) {
+			var preco = parseFloat($(items[i]).text());
+			total += preco;
+		};
+
+		$(this).find(".valor-total").text(total);
+		$(this).find(".quantidade-de-itens").text(items.length);
+
+		});
 
 };
 
 var undo = function(){
-
-	$("tr:hidden").addClass("recuperado").show();
+	$(this).closest(".carrinho").find("tr:hidden").addClass("recuperado").show();
 
 	refreshTotais();
 };
@@ -37,7 +42,7 @@ var removeItem = function(event){
 
 	*/
 
-	$(".recuperado").removeClass("recuperado");
+	$(this).closest("tr").find(".recuperado").removeClass("recuperado");
 	$(this).closest("tr").hide();
 
 	refreshTotais();
@@ -48,7 +53,7 @@ var removeItem = function(event){
 var executaAposInicializacao = function(){
 
 	$(".remove-item").click(removeItem);
-	$("#btnUndo").click(undo);
+	$(".undo").click(undo);
 
 	refreshTotais();
 };
