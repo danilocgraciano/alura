@@ -59,6 +59,10 @@ td {
 	padding: 0.5em;
 }
 
+.recuperado{
+	background: #ffff00;
+}
+
 input[type=button] {
 	background: #F90;
 	border: none;
