@@ -1,6 +1,6 @@
 describe("Maior e Menor",function(){
 
-	it("Números Sequencias",function(){
+	it("Deve Entender Números Sequencias",function(){
 		var algoritmo = new MaiorEMenor();
 		algoritmo.encontra([5,15,7,9]);
 
@@ -8,7 +8,7 @@ describe("Maior e Menor",function(){
 		expect(algoritmo.pegaMenor()).toEqual(5);
 	});
 
-	it("Números Ordem Decrescente",function(){
+	it("Deve Entender Números Ordem Decrescente",function(){
 		var algoritmo = new MaiorEMenor();
 		algoritmo.encontra([9,8,7,6]);
 
@@ -16,7 +16,7 @@ describe("Maior e Menor",function(){
 		expect(algoritmo.pegaMenor()).toEqual(6);
 	});
 
-	it("Números Ordem Crescente",function(){
+	it("Deve Entender Números Ordem Crescente",function(){
 		var algoritmo = new MaiorEMenor();
 		algoritmo.encontra([1,5,9,10]);
 
@@ -24,7 +24,7 @@ describe("Maior e Menor",function(){
 		expect(algoritmo.pegaMenor()).toEqual(1);
 	});
 
-	it("Único número",function(){
+	it("Deve Entender Único número",function(){
 		var algoritmo = new MaiorEMenor();
 		algoritmo.encontra([1]);
 
