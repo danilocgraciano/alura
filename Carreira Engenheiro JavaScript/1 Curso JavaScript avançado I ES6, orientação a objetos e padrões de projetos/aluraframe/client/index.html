@@ -59,7 +59,17 @@
         </tfoot>
     </table>
 
-    <script src="index.js"></script>
+    <!--<script src="index.js"></script>-->
+    <script src="js/app/models/Negociacao.js"></script>
+    <script>
+        //trocar "var" por "let" significa que a variável terá seu scopo de bloco garantido
+        let n1 = new Negociacao(new Date(), 5, 700);
+        console.log(n1);
+        console.log(n1.getData());
+        console.log(n1.getQuantidade());
+        console.log(n1.getValor());
+        console.log(n1.getVolume());
+    </script>
     
 </body>
 </html>
