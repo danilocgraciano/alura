@@ -5,14 +5,17 @@ class NegociacaoController{
 		this._inputData = $('#data');
 		this._inputQuantidade = $('#quantidade');
 		this._inputValor = $('#valor');
+		this._listNegociacao = new ListNegociacoes();
+
+		this._negociacaoGrid = new NegociacaoGrid($('#negociacaoGrid'));
+		this._negociacaoGrid.refresh(this._listNegociacao);
 	}
 
 	adiciona(event){
 
 		event.preventDefault();
-
-		let list = new ListNegociacoes();
-		list.adiciona(this._criaNegociacao());
+		this._listNegociacao.adiciona(this._criaNegociacao());
+		this._negociacaoGrid.refresh(this._listNegociacao);
 		this._limpaTela();
 		
 	}

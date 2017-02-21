@@ -1,6 +1,7 @@
 class DateHelper{
 
 	constructor(){
+		//lanca um erro, serve para validar classes abstratas (não possível de instancia)
 		throw new Error("DateHelper não pode ser instanciado!");
 	}
 
