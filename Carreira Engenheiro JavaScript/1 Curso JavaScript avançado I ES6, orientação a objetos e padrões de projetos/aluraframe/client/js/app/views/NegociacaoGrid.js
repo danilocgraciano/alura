@@ -33,10 +33,26 @@ class NegociacaoGrid{
 			</tbody>
 	        
 	        <tfoot>
+	        	<td colspan="3"></td>
+	        	<td>
+	        		${model.getNegociacoes().reduce((total,n) => total += n.getVolume(),0.0)}
+	        	</td>
 	        </tfoot>
 	    </table>
     `;
 	}
+
+	//o trecho abaixo:
+	//${model.getNegociacoes().reduce((total,n) => total += n.getVolume(),0.0)}
+	//é a redução de:
+	/*<td>${
+	        		(function(){
+	        			let total = 0;
+	        			model.getNegociacoes().forEach(n => total += n.getVolume());
+	        			return total;
+	        		})()
+	        	}</td>
+	*/
 
 	refresh(model){	
 		this._element.innerHTML = this._template(model);
