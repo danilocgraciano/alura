@@ -1,10 +1,6 @@
-class NegociacaoGrid{
+class NegociacaoGrid extends View{
 
-	constructor(element){
-		this._element = element;
-	}
-	
-	_template(model){
+	template(model){
 
 		return `
 			<table class="table table-hover table-bordered">
@@ -53,8 +49,4 @@ class NegociacaoGrid{
 	        		})()
 	        	}</td>
 	*/
-
-	refresh(model){	
-		this._element.innerHTML = this._template(model);
-	}
 }
