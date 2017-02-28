@@ -1,6 +1,6 @@
-class NegociacaoGrid extends View{
+class NegociacaoGrid extends View {
 
-	template(model){
+	template(model) {
 
 		return `
 			<table class="table table-hover table-bordered">
@@ -14,9 +14,9 @@ class NegociacaoGrid extends View{
 	        </thead>
 	        
 	        <tbody>
-			    ${model.getNegociacoes().map(n => 
+			    ${model.getNegociacoes().map(n =>
 
-			          `
+				`
 				          <tr>
 				            <td>${DateHelper.textFromDate(n.getData())}</td>
 				            <td>${n.getQuantidade()}</td>
@@ -25,13 +25,13 @@ class NegociacaoGrid extends View{
 				          </tr>
 			          `
 
-		      	).join('')}
+			).join('')}
 			</tbody>
 	        
 	        <tfoot>
 	        	<td colspan="3"></td>
 	        	<td>
-	        		${model.getNegociacoes().reduce((total,n) => total += n.getVolume(),0.0)}
+	        		${model.getNegociacoes().reduce((total, n) => total += n.getVolume(), 0.0)}
 	        	</td>
 	        </tfoot>
 	    </table>

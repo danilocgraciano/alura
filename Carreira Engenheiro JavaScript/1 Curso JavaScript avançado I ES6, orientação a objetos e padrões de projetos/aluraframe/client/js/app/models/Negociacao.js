@@ -1,6 +1,6 @@
-class Negociacao{
+class Negociacao {
 
-	constructor(data, quantidade, valor){
+	constructor(data, quantidade, valor) {
 
 		/* o caracter "_" antes da variável significa que por convenção
 		 * não devemos acessar estas variáveis a não ser dento da própria classe
@@ -14,21 +14,21 @@ class Negociacao{
 		Object.freeze(this);
 	}
 
-	getData(){
+	getData() {
 		//usado para prevenir modificações, para garantir a imutabilidade,
 		//por se tratar de um outro objeto to tipo date
 		return new Date(this._data.getTime());
 	}
 
-	getQuantidade(){
+	getQuantidade() {
 		return this._quantidade;
 	}
 
-	getValor(){
+	getValor() {
 		return this._valor;
 	}
 
-	getVolume(){
+	getVolume() {
 		return this._quantidade * this._valor;
 	}
 
