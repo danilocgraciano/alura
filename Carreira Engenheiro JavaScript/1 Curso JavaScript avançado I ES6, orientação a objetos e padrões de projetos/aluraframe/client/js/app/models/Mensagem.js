@@ -1,18 +1,18 @@
-class Mensagem{
+class Mensagem {
 
 	//texto='' é o padrão para quando não é passado nada no construtor
 	//caso seja passado, o valor passado é colocado no atributo da classe
-	constructor(texto=''){
+	constructor(texto = '') {
 
 		this._texto = texto;
 
 	}
 
-	getTexto(){
+	getTexto() {
 		return this._texto;
 	}
 
-	setTexto(texto){
+	setTexto(texto) {
 		this._texto = texto;
 	}
 }
