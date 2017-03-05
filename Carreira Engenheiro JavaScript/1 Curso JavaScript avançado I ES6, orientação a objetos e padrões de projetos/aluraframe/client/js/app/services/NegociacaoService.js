@@ -19,7 +19,7 @@ class NegociacaoService {
         return HTTPService.get('negociacoes/semana')
             .then(negociacoes => negociacoes.map(obj => new Negociacao(new Date(obj.data), obj.quantidade, obj.valor)))
             .catch(erro => {
-                console.log(xhr.responseText);
+                console.log(erro);
                 reject("Não foi possível importar as negociações da semana!");
             });
     }
@@ -29,7 +29,7 @@ class NegociacaoService {
         return HTTPService.get('negociacoes/anterior')
             .then(negociacoes => negociacoes.map(obj => new Negociacao(new Date(obj.data), obj.quantidade, obj.valor)))
             .catch(erro => {
-                console.log(xhr.responseText);
+                console.log(erro);
                 reject("Não foi possível importar as negociações da semana anterior!");
             });
 
@@ -40,29 +40,19 @@ class NegociacaoService {
         return HTTPService.get('negociacoes/retrasada')
             .then(negociacoes => negociacoes.map(obj => new Negociacao(new Date(obj.data), obj.quantidade, obj.valor)))
             .catch(erro => {
-                console.log(xhr.responseText);
+                console.log(erro);
                 reject("Não foi possível importar as negociações da semana retrasada!");
             });
 
     }
 
-    save(negociacao, cb) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "/negociacoes", true);
-        xhr.setRequestHeader("Content-type", "application/json");
+    save(negociacao) {
 
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState == 4) {
-
-                if (xhr.status == 200) {
-                    cb(JSON.parse(xhr.responseText));
-                } else {
-                    console.log(xhr.responseText);
-                    cb("Não foi possível salvar a Negociação!", null);
-                }
-
-            }
-        };
-        xhr.send(JSON.stringify(negociacao));
+        return HTTPService.post('/negociacoes', negociacao)
+            .then((data) => data)
+            .catch((erro) => {
+                console.log(xhr.responseText);
+                cb("Não foi possível salvar a Negociação!", null);
+            });
     }
 }

@@ -5,6 +5,7 @@ class NegociacaoController {
 		this._inputData = $('#data');
 		this._inputQuantidade = $('#quantidade');
 		this._inputValor = $('#valor');
+		this._ordemAtual = '';
 
 		/**
 		Este trecho de código usa como parametro da classe ListNegociacoes o this,
@@ -39,7 +40,7 @@ class NegociacaoController {
 		this._listNegociacao = new Bind(
 			new ListNegociacoes(),
 			new NegociacaoGrid($('#negociacaoGrid')),
-			['adiciona', 'esvazia']
+			['adiciona', 'esvazia', 'ordena', 'inverteOrdem']
 		);
 
 		this._mensagem = new Bind(
@@ -110,13 +111,23 @@ class NegociacaoController {
 	save(negociacao) {
 
 		let service = new NegociacaoService();
-		service.save(negociacao, (err) => {
-			if (err) {
-				this._mensagem.setTexto(err);
-				return;
-			}
+		service.save(negociacao)
+			.then((msg) => {
+				console.log(msg);
+				this._mensagem.setTexto("Negociação salva com sucesso!");
+			})
+			.catch((erro) => {
+				this._mensagem.setTexto(erro);
+			});
+	}
 
-			this._mensagem.setTexto("Negociação salva com sucesso!");
-		});
+	ordena(coluna) {
+		if (this._ordemAtual == coluna) {
+			this._listNegociacao.inverteOrdem();
+		} else {
+			this._listNegociacao.ordena((a, b) => a[coluna] - b[coluna]);
+			this._ordemAtual = coluna;
+		}
+
 	}
 }

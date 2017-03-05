@@ -4,6 +4,7 @@ class Mensagem {
 	//caso seja passado, o valor passado é colocado no atributo da classe
 	constructor(texto = '') {
 
+		// this._texto = texto || '';// se texto for undefined, vai passar ''
 		this._texto = texto;
 
 	}

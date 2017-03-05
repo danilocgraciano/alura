@@ -6,10 +6,10 @@ class NegociacaoGrid extends View {
 			<table class="table table-hover table-bordered">
 	        <thead>
 	            <tr>
-	                <th>DATA</th>
-	                <th>QUANTIDADE</th>
-	                <th>VALOR</th>
-	                <th>VOLUME</th>
+	                <th onClick="controller.ordena('_data')">DATA</th>
+	                <th onClick="controller.ordena('_quantidade')">QUANTIDADE</th>
+	                <th onClick="controller.ordena('_valor')">VALOR</th>
+	                <th onClick="controller.ordena('_volume')">VOLUME</th>
 	            </tr>
 	        </thead>
 	        
