@@ -49,6 +49,16 @@ class NegociacaoController {
 			['setTexto']
 		);
 
+		ConnectionFactory.getConnection()
+			.then(connection => {
+				new NegociacaoDao(connection)
+					.listarTodos()
+					.then(negociacoes => {
+						negociacoes.forEach(negociacao => {
+							this._listNegociacao.adiciona(negociacao);
+						});
+					}).catch(erro => this._mensagem.setTexto(erro));
+			}).catch(erro => this._mensagem.setTexto(erro));
 
 
 
@@ -57,18 +67,37 @@ class NegociacaoController {
 	adiciona(event) {
 
 		event.preventDefault();
-		this._listNegociacao.adiciona(this._criaNegociacao());
-		this.save(this._criaNegociacao());
-		this._mensagem.setTexto("Negociação adicionada com sucesso!");
-		this._limpaTela();
+
+		ConnectionFactory.getConnection()
+			.then(connection => {
+				let negociacao = this._criaNegociacao();
+				new NegociacaoDao(connection)
+					.adiciona(negociacao)
+					.then(() => {
+						this._listNegociacao.adiciona(negociacao);
+						//this.save(negociacao);
+						this._mensagem.setTexto("Negociação adicionada com sucesso!");
+						this._limpaTela();
+					}).catch(erro => this._mensagem.setTexto(erro));
+			}).catch(erro => this._mensagem.setTexto(erro));
+
+
+
 
 	}
 
 	apaga() {
 
-		this._listNegociacao.esvazia();
-		this._mensagem.setTexto("Negociações deletadas com sucesso!");
-		this._limpaTela();
+		ConnectionFactory.getConnection()
+			.then(connection => {
+				new NegociacaoDao(connection)
+					.apagarTodos()
+					.then(e => {
+						this._listNegociacao.esvazia();
+						this._mensagem.setTexto(e);
+						this._limpaTela();
+					}).catch(erro => this._mensagem.setTexto(erro));
+			}).catch(erro => this._mensagem.setTexto(erro));
 
 	}
 
@@ -76,8 +105,8 @@ class NegociacaoController {
 
 		return new Negociacao(
 			DateHelper.dateFromText(this._inputData.value),
-			this._inputQuantidade.value,
-			this._inputValor.value
+			parseInt(this._inputQuantidade.value),
+			parseFloat(this._inputValor.value)
 		);
 	}
 
@@ -92,11 +121,16 @@ class NegociacaoController {
 
 	importaNegociacoes() {
 
-		this._listNegociacao.esvazia();
+		//this._listNegociacao.esvazia();
 
 		let service = new NegociacaoService();
 
 		service.obterNegociacoes()
+			.then(negociacoes => 
+				negociacoes.filter(
+						negociacao => this._listNegociacao.getNegociacoes().indexOf(negociacao) == -1
+				)
+			)
 			.then((negociacoes) => {
 				negociacoes
 					.reduce((novaLista, lista) => novaLista.concat(lista), [])
