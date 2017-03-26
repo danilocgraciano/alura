@@ -55,4 +55,57 @@ class NegociacaoService {
                 cb("Não foi possível salvar a Negociação!", null);
             });
     }
+
+    cadastrar(negociacao) {
+        return new Promise((resolve, reject) => {
+            ConnectionFactory.getConnection()
+                .then(connection => {
+                    new NegociacaoDao(connection)
+                        .adiciona(negociacao)
+                        .then(() => {
+                            resolve();
+                        }).catch(erro => reject(erro));
+                }).catch(erro => reject(erro));
+
+        });
+    }
+
+    listarTodos() {
+        return new Promise((resolve, reject) => {
+            ConnectionFactory.getConnection()
+                .then(connection => {
+                    new NegociacaoDao(connection)
+                        .listarTodos()
+                        .then(negociacoes => resolve(negociacoes))
+                        .catch(erro => reject(erro));
+                }).catch(erro => reject(erro));
+        });
+    }
+
+    apagarTodos() {
+
+        return new Promise((resolve, reject) => {
+            ConnectionFactory.getConnection()
+                .then(connection => {
+                    new NegociacaoDao(connection)
+                        .apagarTodos()
+                        .then(e => resolve(e))
+                        .catch(erro => reject(e));
+                }).catch(erro => reject(e));
+        });
+    }
+
+    importaNegociacoes(listaAtual) {
+        return new Promise((resolve, reject) => {
+            this.obterNegociacoes()
+                .then(negociacoes =>
+                    negociacoes.filter(negociacao =>
+                        !listaAtual.some(negociacaoExistente =>
+                            JSON.stringify(negociacao) == JSON.stringify(negociacaoExistente))
+                    )
+                )
+                .then(negociacoes => resolve(negociacoes))
+                .catch(erro => reject(erro));
+        });
+    }
 }
