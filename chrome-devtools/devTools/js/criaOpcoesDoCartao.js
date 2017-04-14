@@ -76,7 +76,7 @@ var criaOpcoesDoCartao = (function(){
 
 		var botaoRemove = $("<button>").addClass("opcoesDoCartao-remove")
                                        .addClass("opcoesDoCartao-opcao")
-		                               .attr("data-id", 1)
+		                               .attr("data-id", idNovoCartao)
                                        .text("Remover")
                                        .click(removeCartao)
 
