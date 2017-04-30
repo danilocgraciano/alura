@@ -1,0 +1,54 @@
+<div class="container">
+    <form [formGroup]="myForm" class="row" (submit)="cadastrar($event)">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Título</label>
+                <input required name="titulo" [(ngModel)]="foto.titulo" formControlName="titulo" class="form-control" autocomplete="off">
+
+                <div *ngIf="!myForm.controls.titulo.valid">
+
+                    <span *ngIf="myForm.controls.titulo.errors.required" class="form-control alert-danger">
+                        Título obrigatório
+                    </span>
+
+                    <span *ngIf="myForm.controls.titulo.errors.minlength" class="form-control alert-danger">
+                        Título deve ter no mínimo 4 caracteres
+                    </span>
+
+                </div>
+                <!--<input (input)="foto.titulo = $event.target.value" [value]="foto.titulo" class="form-control" autocomplete="off">-->
+            </div>
+            <div class="form-group">
+                <label>URL</label>
+                <input name="url" [(ngModel)]="foto.url" formControlName="url" class="form-control" autocomplete="off">
+
+                <span *ngIf="myForm.controls.url.invalid" class="form-control alert-danger">
+                        URL inválida
+                </span>
+
+                <!--<input (input)="foto.url = $event.target.value" [value]="foto.url" class="form-control" autocomplete="off">-->
+            </div>
+            <div class="form-group">
+                <label>Descrição</label>
+                <textarea name="descricao" [(ngModel)]="foto.descricao" formControlName="descricao" class="form-control" autocomplete="off">
+                </textarea>
+
+                <span *ngIf="myForm.controls.descricao.invalid" class="form-control alert-danger">
+                        Descrição inválida
+                </span>
+                <!--<textarea (input)="foto.descricao = $event.target.value" [value]="foto.descricao" class="form-control" autocomplete="off">-->
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">
+                Salvar
+            </button>
+            <a [routerLink]="['']" class="btn btn-primary">Voltar</a>
+            <hr>
+        </div>
+        <div class="col-md-6">
+            <h1 class="text-center">{{foto.titulo}}</h1>
+            <foto url="{{foto.url}}" titulo="{{foto.titulo}}">
+            </foto>
+        </div>
+    </form>
+</div>
