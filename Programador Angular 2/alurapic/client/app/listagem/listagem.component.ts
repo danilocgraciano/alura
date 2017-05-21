@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http'
+import { FotoService } from '../foto/foto.service';
+import { FotoComponent } from '../foto/foto.component';
 
 @Component({
     moduleId: module.id,
@@ -8,14 +9,32 @@ import { Http } from '@angular/http'
 })
 export class ListagemComponent {
 
-    fotos: Object[] = [];
-    constructor(http: Http) {
+    fotos: FotoComponent[] = [];
+    service: FotoService;
+    mensagem: string = '';
 
-        http.get('v1/fotos')
-            .map(res => res.json())
+    constructor(service: FotoService) {
+        this.service = service;
+        this.service
+            .lista()
             .subscribe(elements => {
                 this.fotos = elements;
             }, err => console.log(err));
 
+    }
+
+    remove(foto: FotoComponent) {
+        this.service
+            .remove(foto)
+            .subscribe(elements => {
+                let newArray = this.fotos.slice(0);
+                let index = newArray.indexOf(foto);
+                newArray.splice(index, 1);
+                this.fotos = newArray;
+                this.mensagem = 'Foto removida com sucesso!';
+            }, err => { 
+                console.log(err); 
+                this.mensagem = 'Não foi possível remover a foto!';
+            });
     }
 }
