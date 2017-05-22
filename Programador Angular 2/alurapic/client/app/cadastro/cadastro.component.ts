@@ -16,6 +16,7 @@ export class CadastroComponent {
     service: FotoService;
     route: ActivatedRoute;
     router: Router;
+    mensagem: string = '';
 
     constructor(service: FotoService, fb: FormBuilder, route: ActivatedRoute, router: Router) {
         this.service = service;
@@ -47,9 +48,12 @@ export class CadastroComponent {
 
         this.service
             .cadastra(this.foto)
-            .subscribe(() => {
+            .subscribe((resp) => {
+                this.mensagem = resp.mensagem;
                 this.foto = new FotoComponent();
-                this.router.navigate(['']);
+                if (!resp.inclusao)
+                    this.router.navigate(['']);
+
             }, (error) => console.log(error));
 
     }
