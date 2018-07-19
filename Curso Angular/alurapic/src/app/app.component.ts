@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  alt = "compels";
+  src = "http://www.compels.net/wp-content/uploads/2018/07/LOGO-DEITADA-PARA-SITE.png";
 }
