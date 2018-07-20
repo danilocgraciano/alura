@@ -15,14 +15,6 @@ export class AppComponent {
     {
       alt: "notebook",
       src: "http://www.compels.net/wp-content/uploads/2016/05/notebook.jpg"
-    },
-    {
-      alt: "amazon",
-      src: "http://www.compels.net/wp-content/uploads/2016/05/aws-logo.png"
-    },
-    {
-      alt: "contabilidade",
-      src: "http://www.compels.net/wp-content/uploads/2016/05/contabilidade.jpg"
     }
   ];
 }
