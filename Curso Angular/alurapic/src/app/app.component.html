@@ -1,2 +1,1 @@
-<h1>{{alt}}</h1>
-<img class="img-thumbnail" [src]="src" [alt]="alt">
+<app-photo *ngFor="let photo of photos" [src]="photo.src" [alt]="photo.alt"></app-photo>

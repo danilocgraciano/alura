@@ -6,7 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  alt = "compels";
-  src = "http://www.compels.net/wp-content/uploads/2018/07/LOGO-DEITADA-PARA-SITE.png";
+
+  photos = [
+    {
+      alt: "compels",
+      src: "http://www.compels.net/wp-content/uploads/2018/07/LOGO-DEITADA-PARA-SITE.png"
+    },
+    {
+      alt: "compels",
+      src: "http://www.compels.net/wp-content/uploads/2018/07/LOGO-DEITADA-PARA-SITE.png"
+    }
+  ];
 }
