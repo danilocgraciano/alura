@@ -15,6 +15,10 @@ export class AppComponent {
     {
       alt: "notebook",
       src: "http://www.compels.net/wp-content/uploads/2016/05/notebook.jpg"
+    },
+    {
+      alt: "notebook",
+      src: "http://www.compels.net/wp-content/uploads/2016/05/notebook.jpg"
     }
   ];
 }
