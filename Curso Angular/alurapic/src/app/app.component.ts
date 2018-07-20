@@ -17,7 +17,7 @@ export class AppComponent {
       src: "http://www.compels.net/wp-content/uploads/2018/07/LOGO-DEITADA-PARA-SITE.png"
     },
     {
-      alt: "compels",
+      alt: "compels3",
       src: "http://www.compels.net/wp-content/uploads/2018/07/LOGO-DEITADA-PARA-SITE.png"
     }
   ];
