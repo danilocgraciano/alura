@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '../../../../node_modules/@angular/common/http';
-import { PhotosModule } from '../photos.module';
 import { Photo } from './photo';
 
 const API = 'http://localhost:3000';
 
-@Injectable({
-  providedIn: PhotosModule
-})
+@Injectable()
 export class PhotoService {
 
 
