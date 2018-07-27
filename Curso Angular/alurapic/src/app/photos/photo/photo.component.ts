@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-photo',
+  selector: 'ap-photo',
   templateUrl: './photo.component.html',
   styleUrls: ['./photo.component.css']
 })
