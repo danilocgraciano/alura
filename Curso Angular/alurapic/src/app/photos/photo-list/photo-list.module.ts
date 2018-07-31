@@ -9,13 +9,15 @@ import { PhotosComponent } from './photos/photos.component';
 import { PhotoModule } from '../photo/photo.module';
 import { CardModule } from '../../shared/components/card/card.module';
 import { SearchComponent } from './search/search.component';
+import { DarkenOnHoverModule } from '../../shared/directives/darken-on-hover.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
     PhotoModule,
-    CardModule
+    CardModule,
+    DarkenOnHoverModule
   ],
   declarations: [
     PhotoListComponent,
