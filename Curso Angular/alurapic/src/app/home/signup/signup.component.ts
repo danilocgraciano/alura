@@ -56,11 +56,10 @@ export class SignupComponent implements OnInit {
 
   signup() {
     const newUser = this.signupForm.getRawValue() as NewUser;
-    console.log(newUser);
-    // this.signUpservice.signup(newUser)
-    //   .subscribe(
-    //     () => this.router.navigate([''])),
-    //   err => console.log(err);
+    this.signUpservice.signup(newUser)
+      .subscribe(
+        () => this.router.navigate([''])),
+      err => console.log(err);
   }
 
 }
