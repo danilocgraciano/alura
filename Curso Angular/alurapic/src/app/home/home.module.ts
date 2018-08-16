@@ -6,16 +6,18 @@ import { VmessageModule } from '../shared/vmessage/vmessage.module';
 import { RouterModule } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { SignupService } from './signup/signup.service';
-import { UserNotTakenValidatorService } from './signup/user-not-taken.validator.service';
+import { HomeComponent } from './home.component';
+import { HomeRoutingModule } from './home.routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    VmessageModule
+    VmessageModule,
+    HomeRoutingModule
   ],
-  declarations: [SigninComponent, SignupComponent],
-  providers: [SignupService, UserNotTakenValidatorService]
+  declarations: [SigninComponent, SignupComponent, HomeComponent],
+  providers: [SignupService]
 })
 export class HomeModule { }
