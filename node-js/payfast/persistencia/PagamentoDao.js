@@ -14,6 +14,14 @@ PagamentoDao.prototype.save = function (pagamento, callback) {
     this._connection.query('INSERT INTO pagamentos(forma_de_pagamento, valor, moeda, descricao, status, data) values($1, $2, $3, $4, $5, $6) RETURNING id', values, callback);
 }
 
+PagamentoDao.prototype.update = function (pagamento, callback) {
+    const values = [
+        pagamento.status,
+        pagamento.id
+    ];
+    this._connection.query('UPDATE pagamentos SET status = $1 WHERE id = $2 RETURNING *', values, callback);
+}
+
 PagamentoDao.prototype.findAll = function (callback) {
     this._connection.query('select * from pagamentos', callback);
 }
