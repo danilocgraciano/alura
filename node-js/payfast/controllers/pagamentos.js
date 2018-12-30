@@ -90,6 +90,8 @@ module.exports = (app) => {
                 }
                 cartao = results;
             });
+        } else {
+            cartao = null;
         }
 
         let connection = app.persistencia.connectionFactory;
