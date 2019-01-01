@@ -1,7 +1,60 @@
 module.exports = (app) => {
 
-    app.get('/pagamentos', (req, res) => {
-        res.send('OK!');
+    function getPagamentoFromCache(id) {
+
+        let memcachedClient = app.servicos.MemCachedClient();
+
+        memcachedClient.get('pagamento-' + id, (error, results) => {
+            if (error) {
+                console.log(error);
+            }
+            if (!results) {
+                console.log('MISS - pagamento-' + id);
+            } else {
+                console.log('HIT - pagamento-' + id);
+                return JSON.stringify(results);
+            }
+        });
+
+    };
+
+    function putPagamentoInCache(pagamento) {
+        let memcachedClient = app.servicos.MemCachedClient();
+        let id = pagamento.id;
+
+        memcachedClient.set('pagamento-' + id, pagamento, 100000, (error) => {
+            if (error)
+                console.log(error);
+            else
+                console.log('ADD pagamento-' + id);
+        });
+    }
+
+    app.get('/pagamentos/pagamento/:id', (req, res) => {
+
+        let id = req.params.id;
+        let pagamento;
+
+        pagamento = getPagamentoFromCache(id);
+
+        if (pagamento) {
+            res.status(200).send(pagamento);
+            return;
+        }
+
+        let connection = app.persistencia.connectionFactory;
+        let pagamentoDao = new app.persistencia.PagamentoDao(connection);
+
+        pagamentoDao.findById(id, (errors, results) => {
+
+            if (errors) {
+                res.status(500).send(errors);
+                return;
+            }
+
+            res.status(200).send(results.rows[0]);
+        });
+
     });
 
     app.delete('/pagamentos/pagamento/:id', (req, res) => {
@@ -20,6 +73,9 @@ module.exports = (app) => {
                 res.status(500).send(errors);
                 return;
             }
+
+            putPagamentoInCache(pagamento);
+
             res.sendStatus(204);
         });
     });
@@ -40,6 +96,8 @@ module.exports = (app) => {
                 res.status(500).send(errors);
                 return;
             }
+
+            putPagamentoInCache(pagamento);
 
             let response = {
 
@@ -108,6 +166,8 @@ module.exports = (app) => {
 
             let id = results.rows[0].id;
             pagamento.id = id;
+
+            putPagamentoInCache(pagamento);
 
             let response = {
 

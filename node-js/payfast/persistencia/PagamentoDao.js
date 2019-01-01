@@ -27,7 +27,7 @@ PagamentoDao.prototype.findAll = function (callback) {
 }
 
 PagamentoDao.prototype.findById = function (id, callback) {
-    this._connection.query("select * from pagamentos where id = ?", [id], callback);
+    this._connection.query("select * from pagamentos where id = $1", [id], callback);
 }
 
 module.exports = function () {
