@@ -1,3 +1,5 @@
+const logger = require('../servicos/logger.js');
+
 module.exports = (app) => {
 
     function getPagamentoFromCache(id) {
@@ -6,12 +8,12 @@ module.exports = (app) => {
 
         memcachedClient.get('pagamento-' + id, (error, results) => {
             if (error) {
-                console.log(error);
+                logger.error(error);
             }
             if (!results) {
-                console.log('MISS - pagamento-' + id);
+                logger.info('MISS - pagamento-' + id);
             } else {
-                console.log('HIT - pagamento-' + id);
+                logger.info('HIT - pagamento-' + id);
                 return JSON.stringify(results);
             }
         });
@@ -24,9 +26,9 @@ module.exports = (app) => {
 
         memcachedClient.set('pagamento-' + id, pagamento, 100000, (error) => {
             if (error)
-                console.log(error);
+                logger.error(error);
             else
-                console.log('ADD pagamento-' + id);
+                logger.info('ADD pagamento-' + id);
         });
     }
 
@@ -48,6 +50,7 @@ module.exports = (app) => {
         pagamentoDao.findById(id, (errors, results) => {
 
             if (errors) {
+                logger.error(errors);
                 res.status(500).send(errors);
                 return;
             }
@@ -70,6 +73,7 @@ module.exports = (app) => {
         pagamentoDao.update(pagamento, (errors, results) => {
 
             if (errors) {
+                logger.error(errors);
                 res.status(500).send(errors);
                 return;
             }
@@ -93,6 +97,7 @@ module.exports = (app) => {
         pagamentoDao.update(pagamento, (errors, results) => {
 
             if (errors) {
+                logger.error(errors);
                 res.status(500).send(errors);
                 return;
             }
@@ -128,21 +133,22 @@ module.exports = (app) => {
         let errors = req.validationErrors();
 
         if (errors) {
-            console.log('Erros de validação encontrados');
+            logger.info('Erros de validação encontrados');
+            logger.info(errors);
             res.status(400).send(errors);
             return;
         }
 
-        console.log('Processando pagamento...');
+        logger.info('Processando pagamento...');
         let cartao = body['cartao'];
         if (pagamento.forma_de_pagamento == 'cartao') {
-            console.log(cartao);
+            logger.info(cartao);
 
             let clientCartoes = new app.servicos.CartoesClient();
 
             clientCartoes.autoriza(cartao, (exception, request, response, results) => {
                 if (exception) {
-                    console.log(exception);
+                    logger.error(exception);
                     res.status(400).send(results);
                     return;
                 }
@@ -161,6 +167,7 @@ module.exports = (app) => {
         pagamentoDao.save(pagamento, (error, results) => {
 
             if (error) {
+                logger.error(error);
                 res.status(500).send(error);
             }
 
