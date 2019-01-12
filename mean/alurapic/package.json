@@ -10,6 +10,7 @@
   "author": "Danilo C. Graciano <danilocgraciano@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "consign": "^0.1.6",
     "express": "^4.16.4"
   }
 }
