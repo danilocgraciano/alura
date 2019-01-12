@@ -4,6 +4,8 @@ module.exports = function (app) {
 
     app.get('/v1/fotos', api.list);
 
-    app.get('/v1/fotos/:id', api.findById);
+    app.route('/v1/fotos/:id')
+        .get(api.findById)
+        .delete(api.deleteById);
 
 };
